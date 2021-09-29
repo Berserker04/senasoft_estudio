@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function HomeList() {
   const [people, setPeople] = useState([]);
@@ -27,12 +28,9 @@ export default function HomeList() {
             <p className="card-text">
               Especie: <span>{item.species}</span>
             </p>
-            <a
-              href={`https://rickandmortyapi.com/api/character/${item.id}`}
-              className="btn btn-primary"
-            >
+            <Link to={`/datail/${item.id}`} className="btn btn-primary">
               Ver detalle
-            </a>
+            </Link>
           </div>
         </div>
       ))}

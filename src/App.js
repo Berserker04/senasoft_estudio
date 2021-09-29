@@ -1,6 +1,7 @@
 import React from "react";
-import HomeCotainer from "./views/home/HomeCotainer";
+import AppRoutes from "./routes";
+// import HomeCotainer from "./views/home/HomeCotainer";
 
-const App = () => <HomeCotainer />;
+const App = () => <AppRoutes />;
 
 export default App;
