@@ -1,26 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { startGetPeople } from "../../../redux/actions/people";
+import { useSelector } from "react-redux";
 
 export default function HomeList() {
-  const [people, setPeople] = useState([]);
-
-  const getPeople = useCallback(async () => {
-    await axios
-      .get("https://rickandmortyapi.com/api/character")
-      .then(({ data }) => {
-        setPeople(data.results);
-      })
-      .catch((e) => console.log(e));
-  }, [setPeople]);
+  const dispatch = useDispatch();
+  const { filterPeople } = useSelector((state) => state.people);
 
   useEffect(() => {
-    getPeople();
-  }, [getPeople]);
+    dispatch(startGetPeople());
+  }, []);
 
   return (
     <div className="row">
-      {people.map((item) => (
+      {filterPeople.map((item) => (
         <div key={item.id} className="card" style={{ width: "18rem" }}>
           <img src={item.image} className="card-img-top" alt="..." />
           <div className="card-body">

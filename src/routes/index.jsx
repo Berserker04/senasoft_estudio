@@ -10,7 +10,7 @@ export default function AppRoutes() {
       <Layout>
         <Switch>
           <Route exact path="/" component={HomeCotainer} />
-          <Route exact path="/home2" component={HomeCotainer} />
+          {/* <Route exact path="/home2" component={HomeCotainer} /> */}
           <Route exact path="/datail/:id" component={Detail} />
         </Switch>
       </Layout>

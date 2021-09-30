@@ -1,7 +1,21 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { setFilterPeople } from "../redux/actions/people";
 
 export default function Layout({ children }) {
+  const { people } = useSelector((state) => state.people);
+  const dispatch = useDispatch();
+
+  const filterPeople = (value) => {
+    const filter = people.filter((p) =>
+      p.name.toLowerCase().includes(value.toLowerCase())
+    );
+    console.log(filter);
+    dispatch(setFilterPeople(filter));
+  };
+
   return (
     <div className="container">
       <header>
@@ -31,7 +45,7 @@ export default function Layout({ children }) {
                     Inicio
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink
                     activeClassName="active"
                     className="nav-link"
@@ -40,7 +54,7 @@ export default function Layout({ children }) {
                   >
                     Inicio 2
                   </NavLink>
-                </li>
+                </li> */}
               </ul>
               <form className="d-flex">
                 <input
@@ -48,9 +62,10 @@ export default function Layout({ children }) {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  onChange={({ target }) => filterPeople(target.value)}
                 />
                 <button className="btn btn-outline-success" type="submit">
-                  Search
+                  Buscar...
                 </button>
               </form>
             </div>

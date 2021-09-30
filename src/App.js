@@ -1,7 +1,12 @@
 import React from "react";
+import { Provider } from "react-redux";
 import AppRoutes from "./routes";
-// import HomeCotainer from "./views/home/HomeCotainer";
+import store from "./redux/store";
 
-const App = () => <AppRoutes />;
+const App = () =>(
+    <Provider store={store}>
+        <AppRoutes />
+    </Provider>
+)
 
 export default App;
